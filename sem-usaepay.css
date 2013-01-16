@@ -1,0 +1,15 @@
+/*
+*  SEM USA ePay Plugin Styles
+*/
+
+.sem_usaepay_input
+{
+	margin: 5px;
+	border-radius: 5px;
+}
+
+.sem_usaepay_submit
+{
+	margin: 5px 5px 5px 0px;
+	border-radius: 5px;
+}
