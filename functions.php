@@ -16,8 +16,8 @@ function sem_usaepay_form($width="100%")
     $retval .= '<form action="https://www.usaepay.com/interface/epayform/">';
 	$retval .= '<input type="hidden" name="UMkey" value="'.$sem_usaepay_key.'">';
 	$retval .= '<input type="hidden" name="UMcommand" value="sale">';
-	$retval .= '<label for="UMinvoice">Invoice Number</label>';
-	$retval .= '<input type="text" class="sem_usaepay_input"  name="UMinvoice" value="" autofocus><br />';
+	//$retval .= '<label for="UMinvoice">Invoice Number</label>';
+	//$retval .= '<input type="text" class="sem_usaepay_input"  name="UMinvoice" value="" autofocus><br />';
 	$retval .= '<label for="UMamount">Amount</label>';
 	$retval .= '<input type="text" class="sem_usaepay_input" name="UMamount" value=""><br />';
 	$retval .= '<input type="hidden" name="UMhash" value="[hash]">';

@@ -2,8 +2,8 @@
 /*
 Plugin Name: Strategic eMarketing USA ePay
 Plugin URI: http://www.douglasconsulting.net
-Description: The Strategic eMarketing USA ePay plugin.
-Version: 0.5 Alpha
+Description: The Strategic eMarketing USA ePay plugin. Updated for Making Headway website.
+Version: 0.6 Beta
 Author: Jason Douglas
 Author URI: http://www.douglasconsulting.net
 License: GPL
