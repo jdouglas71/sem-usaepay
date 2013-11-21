@@ -3,6 +3,16 @@
 <head>
 <meta http-equiv="Content-Language" content="en-us">
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<script>
+
+function handleClick(cb)
+{
+	document.getElementById("UMschedule").disabled = !cb.checked;
+}
+
+</script>
+
+
 <title>Making Headway</title>
 </head>
 
@@ -162,18 +172,42 @@
 			<input type="text" name="UMcard" size="17"></td>
 		</tr>
 		<tr>
-			<td bgcolor="#ffffff" width="234" align="right"><font face="Verdana" size="2">Card Expiration 
-			Date: </font></td>
+			<td bgcolor="#ffffff" width="234" align="right">
+				<font face="Verdana" size="2">Card Expiration Date: </font>
+			</td>
 			<td bgcolor="#ffffff" width="450">
 			<input type="text" name="UMexpir" size="4"> MMYY</td>
 		</tr>
 		<tr>
-			<td bgcolor="#ffffff" width="234" align="right"><font face="Verdana"><font size="2">
-			Card ID (CVV2/CID) Number:<br>
-&nbsp;</font><font size="1">[<a target="_blank" href="/cvv.htm">What is the Card 
-			ID?</a>]</font></font></td>
+			<td bgcolor="#ffffff" width="234" align="right">
+				<font face="Verdana"><font size="2">
+				Card ID (CVV2/CID) Number:<br>
+				&nbsp;</font><font size="1">[<a target="_blank" href="/cvv.htm">What is the Card 
+				ID?</a>]</font></font>
+			</td>
 			<td bgcolor="#ffffff" width="450">
 			<input type="text" name="UMcvv2" size="5"></td>
+		</tr>
+		<tr>
+			<td bgcolor="#ffffff" width="234" align="right">			
+				<font face="Verdana" size="2">Recurring?: </font>
+			</td>
+			<td bgcolor="#ffffff" width="450">
+				<input type="checkbox" name="UMaddcustomer" onclick="handleClick(this);" value="yes">
+			</td>
+		</tr>
+
+		<tr>
+			<td bgcolor="#ffffff" width="234" align="right">			
+				<font face="Verdana" size="2">Payment Schedule: </font>
+			</td>
+			<td bgcolor="#ffffff" width="450">
+				<select id="UMschedule" name="UMschedule" disabled="disabled">
+					<option value="monthly">Monthly</option>
+					<option value="quarterly">Quarterly</option>
+					<option value="annually">Annually</option>
+				</select>			
+			</td>
 		</tr>
 		<tr>
 			<td bgcolor="#ffffff" width="692" colspan="2">&nbsp;&nbsp;&nbsp; </td>
@@ -242,8 +276,7 @@
 			</font></td>
 		</tr>
 		<tr>
-			<td bgcolor="#ffffff" width="234">&nbsp; </td>
-			<td bgcolor="#ffffff" width="450">&nbsp;</td>
+			<hr>
 		</tr>
 		<tr>
 			<td bgcolor="#ffffff" width="692" colspan="2">
