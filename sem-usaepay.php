@@ -15,17 +15,12 @@ require_once(dirname(__FILE__)."/config.php");
 /** HOOKS **/
 
 /* This calls sem_usaepay_init() function when wordpress initializes. */
-add_action('init', 'sem_usaepay_init');
-add_action('wp_head', 'sem_usaepay_js_header' );
 
 /* Runs when Plugin is activated. */
-register_activation_hook( __FILE__, 'sem_usaepay_install' );
 
 /* Runs on plugin deactivated. */
-register_deactivation_hook( __FILE__, 'sem_usaepay_uninstall' );
 
 /** Admin Stuff **/
-add_action( 'admin_menu', 'sem_usaepay_admin_menu' );
 
 /**
  * Add our admin menu to the dashboard.
@@ -42,9 +37,9 @@ function sem_usaepay_admin_page()
 {
 	include( 'sem-usaepay-admin.php' );
 }
+add_action( 'admin_menu', 'sem_usaepay_admin_menu' );
 
 /** SHORTCODES **/
-add_shortcode( 'sem_usaepay_form', 'sem_usaepay_form_shortcode' );
 
 /** FUNCTIONS **/
 /**
@@ -52,28 +47,12 @@ add_shortcode( 'sem_usaepay_form', 'sem_usaepay_form_shortcode' );
  */
 function sem_usaepay_install()
 {
-	global $wpdb;
-	global $sem_usaepay_version;
-	global $sem_usaepay_key;
-
-	//Update Options
-	if( !add_option(SEM_USAEPAY_VERSION, $sem_usaepay_version) )
-	{
-		update_option(SEM_USAEPAY_VERSION, $sem_usaepay_version);
-	}
-
-	//Add Options
-	if( !add_option( SEM_USAEPAY_KEY, $sem_usaepay_key ) )
-	{
-		update_option( SEM_USAEPAY_KEY, $sem_usaepay_key );
-	}
-
-	if( !add_option( SEM_USAEPAY_TESTMODE, $sem_usaepay_testmode ) )
-	{
-		update_option( SEM_USAEPAY_TESTMODE, $sem_usaepay_testmode );
-	}
-
+	add_option(SEM_USAEPAY_VERSION, $sem_usaepay_version);
+	add_option(SEM_USAEPAY_KEY, $sem_usaepay_key);
+	add_option(SEM_USAEPAY_TESTMODE, $sem_usaepay_testmode);
+	add_option(SEM_USAEPAY_NOTIFICATION_EMAIL, $sem_usaepay_notification_email);
 }
+register_activation_hook( __FILE__, 'sem_usaepay_install' );
 
 /**
  * Uninstall Function.
@@ -86,24 +65,17 @@ function sem_usaepay_uninstall()
 	delete_option( SEM_USAEPAY_VERSION );
 	delete_option( SEM_USAEPAY_KEY );
 	delete_option( SEM_USAEPAY_TESTMODE );
+	delete_option( SEM_USAEPAY_NOTIFICATION_EMAIL );
 }
+register_deactivation_hook( __FILE__, 'sem_usaepay_uninstall' );
 
 /**
  * Called on init of WordPress.
  */
 function sem_usaepay_init()
 {
-	global $sem_usaepay_version;
-	global $sem_usaepay_key;
-	global $sem_usaepay_testmode;
-
-	if( !is_admin() )
-	{
-		$sem_usaepay_version = get_option( SEM_USAEPAY_VERSION );
-		$sem_usaepay_key = get_option( SEM_USAEPAY_KEY );
-		$sem_usaepay_testmode = get_option( SEM_USAEPAY_TESTMODE );
-	}
 }
+add_action('init', 'sem_usaepay_init');
 
 /**
  * Form Template
@@ -120,6 +92,7 @@ function sem_usaepay_form_shortcode($atts, $content=null)
 
 	return $retval;
 }
+add_shortcode( 'sem_usaepay_form', 'sem_usaepay_form_shortcode' );
 
 /**
  * Set up header for AJAX calls.
@@ -133,5 +106,5 @@ function sem_usaepay_js_header()
 	</script>
 	<?php
 }
+add_action('wp_head', 'sem_usaepay_js_header' );
 
-?>

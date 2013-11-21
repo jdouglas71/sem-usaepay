@@ -8,8 +8,9 @@
  */
 function sem_usaepay_form($width="100%")
 {
-	global $sem_usaepay_key;
-	global $sem_usaepay_testmode;
+	$sem_usaepay_key = get_option('sem_usaepay_key');
+	$sem_usaepay_testmode = get_option('sem_usaepay_testmode');
+	$sem_usaepay_notification_email = get_option('sem_usaepay_notification_email');
 
     $retval = "";
 
